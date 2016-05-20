@@ -168,9 +168,12 @@
 
 		// ON CLICK › HIDE TOOLTIP
 		document.body.addEventListener( 'click', function(e) {
-			if(visible) {
+			// If visible and hiding tooltip is not scheduled, hide tooltip.
+			if(visible && !hideTimeout) {
 				hideTooltip();
 			} else {
+				// If a tooltip is not visible or hiding a tooltip is scheduled,
+				// then schedule displaying a new tooltip.
 				showTooltip(e);
 			}
 		});
