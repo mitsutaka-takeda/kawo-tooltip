@@ -154,12 +154,6 @@
 			visible = false;
 		};
 
-
-		// LISTEN TO MOUSEENTER EVENT
-		// -------------------------------------------------------------------------------
-		document.body.addEventListener( 'mouseenter', showTooltip, true );
-
-
 		// LISTEN TO MOUSELEAVE EVENT
 		// -------------------------------------------------------------------------------
 		document.body.addEventListener( 'mouseleave', function(){
