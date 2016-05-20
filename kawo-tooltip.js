@@ -83,18 +83,8 @@
 		};
 
 
-		// FUNCTION : HIDE TOOLTIP
-		// -----------------------------------------------------------------------
-		var hideTooltip = function() {
-			tooltip.style.visibility = 'hidden';
-			visible = false;
-		};
-
-
-		// LISTEN TO MOUSEENTER EVENT
-		// -------------------------------------------------------------------------------
-		document.body.addEventListener( 'mouseenter', function( e ){
-
+		// FUNCTION : SHOW TOOLTIP
+		var showTooltip = function(e) {
 			// TARGET HAS 'data-tooltip' ATTRIBUTE
 			if ( e.target.hasAttribute( 'data-tooltip' ) ) {
 
@@ -155,8 +145,19 @@
 				else positionVertical( ( targetSize.bottom + 5 ), '45', '-5px', 'auto' );
 
 			}
+		};
 
-		}, true );
+		// FUNCTION : HIDE TOOLTIP
+		// -----------------------------------------------------------------------
+		var hideTooltip = function() {
+			tooltip.style.visibility = 'hidden';
+			visible = false;
+		};
+
+
+		// LISTEN TO MOUSEENTER EVENT
+		// -------------------------------------------------------------------------------
+		document.body.addEventListener( 'mouseenter', showTooltip, true );
 
 
 		// LISTEN TO MOUSELEAVE EVENT
@@ -172,7 +173,13 @@
 		}, true );
 
 		// ON CLICK › HIDE TOOLTIP
-		document.body.addEventListener( 'click', hideTooltip );
+		document.body.addEventListener( 'click', function(e) {
+			if(visible) {
+				hideTooltip();
+			} else {
+				showTooltip(e);
+			}
+		});
 
 		// ON MAIN WINDOW SCROLL › HIDE TOOLTIP
 		document.addEventListener( 'wheel', function(){
